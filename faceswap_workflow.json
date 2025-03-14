@@ -1,0 +1,114 @@
+{
+  "3": {
+    "inputs": {
+      "image": "source_face.png"
+    },
+    "class_type": "LoadImage"
+  },
+  "4": {
+    "inputs": {
+      "image": "target_image.png"
+    },
+    "class_type": "LoadImage"
+  },
+  "5": {
+    "inputs": {
+      "model_name": "buffalo_l"
+    },
+    "class_type": "FaceAnalysisLoader"
+  },
+  "6": {
+    "inputs": {
+      "provider_name": "CPU"
+    },
+    "class_type": "FaceAnalysisProviderLoader"
+  },
+  "7": {
+    "inputs": {
+      "image": [
+        "3",
+        0
+      ],
+      "model": [
+        "5",
+        0
+      ],
+      "provider": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FaceAnalysis"
+  },
+  "8": {
+    "inputs": {
+      "image": [
+        "4",
+        0
+      ],
+      "model": [
+        "5",
+        0
+      ],
+      "provider": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "FaceAnalysis"
+  },
+  "9": {
+    "inputs": {
+      "reference_image": [
+        "3",
+        0
+      ],
+      "target_image": [
+        "4",
+        0
+      ],
+      "reference_faces_index": 0,
+      "target_faces_index": 0,
+      "reference_face_info": [
+        "7",
+        0
+      ],
+      "target_face_info": [
+        "8",
+        0
+      ],
+      "swap_mode": "reference_face",
+      "face_restore": true,
+      "restore_visibility": 1.0,
+      "restore_face_scale": 1.0,
+      "visibility": 1.0,
+      "face_scale": 1.0,
+      "upscale_visibility": 0.5,
+      "upscale_factor": 1.0,
+      "upscaler_name": "RealESRGAN_x4plus",
+      "console_log_level": "INFO",
+      "seed": 42
+    },
+    "class_type": "ReActorFaceSwap"
+  },
+  "10": {
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "faceswap_output",
+      "filename_delimiter": "_",
+      "filename_number_padding": 4,
+      "filename_number_start": 1,
+      "extension": "png",
+      "quality": 100,
+      "lossless_webp": false,
+      "overwrite_mode": "overwrite",
+      "compress_level": 4,
+      "create_zip": false,
+      "save_metadata": true
+    },
+    "class_type": "SaveImage"
+  }
+}
